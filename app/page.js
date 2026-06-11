@@ -57,7 +57,7 @@ const artToys = [
             <div className="flex items-center gap-4">
 
               <img
-                src="/Logo Circorio.JPG"
+                src="/Logo Circorio.jpeg.jpeg"
                 alt="Circorio Logo"
                 className="w-12 h-12 object-cover rounded-full border border-[#5b0f2f]"
               />
@@ -68,7 +68,7 @@ const artToys = [
 
   <a href="#productos">Productos</a>
 
-  <a href="#about">A cerca de</a>
+  <a href="#acerca de">Acerca de</a>
 
   <a href="/portafolio">Portafolio</a>
 
@@ -84,7 +84,7 @@ const artToys = [
         <section className="flex flex-col items-center justify-center text-center px-6 py-32 bg-black/60 backdrop-blur-sm min-h-screen">
 
           <img
-            src="/Logo Circorio.JPG"
+            src="/Logo Circorio.jpeg.jpeg"
             alt="Circorio Logo"
             className="w-40 h-40 object-cover rounded-full border-4 border-[#5b0f2f] shadow-[0_0_40px_rgba(122,27,68,0.6)]"
           />
@@ -182,12 +182,12 @@ const artToys = [
         {/* ABOUT */}
 
         <section
-          id="about"
+          id="acerca de"
           className="px-6 py-32 bg-black/60 backdrop-blur-sm text-center"
         >
 
           <h2 className="text-5xl text-[#f4e9e1] font-bold">
-            About Circorio
+            Acerca de
           </h2>
 
           <p className="mt-8 max-w-3xl mx-auto text-[#c5b3c0] text-lg leading-relaxed">
@@ -203,23 +203,23 @@ Queremos ofrecer creatividad, arte y la satisfacción de tener un peluche hecho 
         {/* CONTACT */}
 
         <section
-          id="contact"
-          className="px-6 py-24 text-center"
-        >
+  id="contact"
+  className="px-6 py-24 text-center"
+>
+  <h2 className="text-5xl text-[#f4e9e1] font-bold">
+    Contact
+  </h2>
 
-          <h2 className="text-5xl text-[#f4e9e1] font-bold">
-            Contact
-          </h2>
-
-          <a
-            href="https://instagram.com/circorio"
-            target="_blank"
-            className="mt-6 inline-block text-[#c5b3c0] hover:text-white transition text-xl"
-          >
-            Instagram: @circorio
-          </a>
-
-        </section>
+  <div className="mt-12">
+    <a
+      href="https://instagram.com/circorio"
+      target="_blank"
+      rel="noopener noreferrer"
+className="inline-block bg-[#5b0f2f] hover:bg-[#7a1b44] hover:scale-105 px-5 py-2 rounded-xl text-base transition duration-300 shadow-lg"    >
+      📸 Instagram @circorio
+    </a>
+  </div>
+</section>
       </div>
     </>
   )

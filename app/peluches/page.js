@@ -1,118 +1,121 @@
 "use client"
-
 import { useState } from "react"
-
 export default function Ilustraciones() {
-  const [index, setIndex] = useState({
-    gatos: 0,
-    conejos: 0,
-    ratas: 0,
-    arlequines: 0,
-    fantasmas: 0,
-    monjas: 0,
-  })
-
+    const [selected, setSelected] = useState(null)
   const data = {
     gatos: [
-      { name: "Gato 1", image: "/gato1.jpg" },
-      { name: "Gato 2", image: "/gato2.jpg" },
+      { name: "Gato 1", price: "$20", image: "/gatomoradoblanco.jpeg" },
+      { name: "Gato 2", price: "$20", image: "/gato2.jpg" },
     ],
     conejos: [
-      { name: "Conejo 1", image: "/conejo1.jpg" },
-      { name: "Conejo 2", image: "/conejo2.jpg" },
+      { name: "Conejo 1", price: "$20", image: "/_MG_6079.JPG" },
+      { name: "Conejo 2", price: "$20", image: "/conejo2.jpg" },
     ],
     ratas: [
-      { name: "Rata 1", image: "/rata1.jpg" },
-      { name: "Rata 2", image: "/rata2.jpg" },
+      { name: "Rata 1", price: "$20", image: "/rata.jpeg" },
+      { name: "Rata 2", price: "$20", image: "/rata2.jpg" },
     ],
     arlequines: [
-      { name: "Arlequin 1", image: "/arlequin1.jpg" },
-      { name: "Arlequin 2", image: "/arlequin2.jpg" },
+      { name: "Arlequin 1", price: "$20", image: "/arlequin 1 .JPG" },
+      { name: "Arlequin 2", price: "$20", image: "/arlequin2.jpg" },
     ],
     fantasmas: [
-      { name: "Fantasma 1", image: "/fantasma1.jpg" },
-      { name: "Fantasma 2", image: "/fantasma2.jpg" },
+      { name: "Fantasma 1", price: "$20", image: "/fantasma.jpg" },
+      { name: "Fantasma 2", price: "$20", image: "/fantasma2.jpg" },
     ],
     monjas: [
-      { name: "Monja 1", image: "/monja1.jpg" },
-      { name: "Monja 2", image: "/monja2.jpg" },
+      { name: "Monja 1", price: "$20", image: "/monja.jpeg" },
+      { name: "Monja 2", price: "$20", image: "/monja2.jpg" },
     ],
   }
 
-  const renderCarrusel = (key, title) => (
-    <section className="px-6 py-16">
+  const renderCategoria = (title, items) => (
+   <div className="px-6 py-16 max-w-6xl mx-auto">
       <h2 className="text-3xl text-white mb-6">{title}</h2>
 
-      <div className="relative overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {items.map((item, i) => (
+          <div
+  key={i}
+  className="bg-black/60 rounded-xl overflow-hidden border border-white/10 shadow-lg transition-transform hover:scale-105 duration-300 cursor-pointer"
+>
+            
+            <img
+  src={item.image}
+  alt={item.name}
+  className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
+  onClick={() => setSelected(item)}
+/>
 
-        {/* IZQ */}
-        <button
-          onClick={() =>
-            setIndex((prev) => ({
-              ...prev,
-              [key]:
-                prev[key] === 0
-                  ? data[key].length - 1
-                  : prev[key] - 1,
-            }))
-          }
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-2"
-        >
-          ‹
-        </button>
-
-        {/* DERECHA */}
-        <button
-          onClick={() =>
-            setIndex((prev) => ({
-              ...prev,
-              [key]:
-                prev[key] === data[key].length - 1
-                  ? 0
-                  : prev[key] + 1,
-            }))
-          }
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/60 px-3 py-2"
-        >
-          ›
-        </button>
-
-        {/* SLIDER */}
-        <div
-          className="flex transition-transform duration-500"
-          style={{
-            transform: `translateX(-${index[key] * 100}%)`,
-          }}
-        >
-          {data[key].map((item, i) => (
-            <div key={i} className="min-w-full flex justify-center">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="h-96 object-cover rounded-xl"
-              />
+            <div className="p-4 text-white">
+              <h3 className="text-xl font-bold">{item.name}</h3>
+              <p className="text-gray-300">{item.price}</p>
             </div>
-          ))}
-        </div>
+
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   )
 
   return (
     <div
-      className="min-h-screen text-white bg-cover bg-center bg-fixed"
+      className="min-h-screen bg-cover bg-center bg-fixed text-white"
       style={{ backgroundImage: "url('/Fondo.jpeg')" }}
     >
-      <div className="bg-black/60 min-h-screen">
+      <div className="bg-black/60 min-h-screen px-6 py-10">
 
-        {renderCarrusel("gatos", "Gatos")}
-        {renderCarrusel("conejos", "Conejos")}
-        {renderCarrusel("ratas", "Ratas")}
-        {renderCarrusel("arlequines", "Arlequines")}
-        {renderCarrusel("fantasmas", "Fantasmas")}
-        {renderCarrusel("monjas", "Monjas")}
+        {renderCategoria("Gatos", data.gatos)}
+        {renderCategoria("Conejos", data.conejos)}
+        {renderCategoria("Ratas", data.ratas)}
+        {renderCategoria("Arlequines", data.arlequines)}
+        {renderCategoria("Fantasmas", data.fantasmas)}
+        {renderCategoria("Monjas", data.monjas)}
 
       </div>
+      {selected && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+    onClick={() => setSelected(null)}
+  >
+    <div
+      className="bg-zinc-900 rounded-2xl overflow-hidden max-w-3xl w-full shadow-2xl border border-white/10 flex"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* IMAGEN IZQUIERDA */}
+      <div className="w-1/2">
+        <img
+          src={selected.image}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* INFO DERECHA */}
+      <div className="w-1/2 p-6 text-white flex flex-col justify-center">
+        <h2 className="text-3xl font-bold">{selected.name}</h2>
+
+        <p className="text-gray-300 mt-2">
+          Gatitos tuertos siempre dispuestos a proteger tus sueños..
+        </p>
+
+        <p className="text-xl mt-4 text-white font-semibold">
+          {selected.price}
+        </p>
+
+        <button className="mt-6 bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-200">
+          Comprar
+        </button>
+
+        <button
+          className="mt-3 text-gray-400 text-sm"
+          onClick={() => setSelected(null)}
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   )
 }
